@@ -1,5 +1,4 @@
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
 class HTTP {
   final String url;
@@ -7,5 +6,6 @@ class HTTP {
 
   Future getData() async {
     http.Response response = await http.get(url);
+    return response.body;
   }
 }

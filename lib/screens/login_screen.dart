@@ -77,7 +77,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         command = 'su - $user';
                         HTTP(
                             'http://192.168.43.161/cgi-bin/myCGI.py?x=$command');
+                        Navigator.pushNamed(context, Terminal.id);
                       }
+                      setState(() {
+                        showSpinner = false;
+                      });
                     } catch (e) {
                       print(e);
                     }
