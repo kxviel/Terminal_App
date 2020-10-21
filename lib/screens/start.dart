@@ -23,29 +23,47 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Hero(
-              tag: 'logo',
-              child: Container(
-                child: Image.asset('images/code.png'),
-                height: 57.0,
-              ),
-            ),
-            ColorizeAnimatedTextKit(
-                onTap: () {
-                  print("Tap Event");
-                },
-                text: ['TermSoft'],
-                textStyle: GoogleFonts.sacramento(
-                    textStyle: TextStyle(fontSize: 60.0)),
-                colors: [
-                  Color(0xff213e3b),
-                  Color(0xff41aea9),
-                  Color(0xffa6f6f1),
-                  Color(0xffe8ffff),
-                ],
-                textAlign: TextAlign.start,
-                alignment: AlignmentDirectional.topStart // or Alignment.topLeft
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Hero(
+                  tag: 'logo',
+                  child: Container(
+                    child: Image.asset('images/code.png'),
+                    height: 56.0,
+                  ),
                 ),
+              ],
+            ),
+            SizedBox(
+              height: 48.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ColorizeAnimatedTextKit(
+                    speed: const Duration(milliseconds: 1000),
+                    onTap: () {
+                      print("Tap Event");
+                    },
+                    text: ['TermSoft'],
+                    textStyle: GoogleFonts.sacramento(
+                        textStyle: TextStyle(
+                            fontSize: 63.0, fontWeight: FontWeight.bold)),
+                    colors: [
+                      Color(0xff213e3b),
+                      Color(0xff41aea9),
+                      Color(0xffa6f6f1),
+                      Color(0xffe8ffff),
+                    ],
+                    textAlign: TextAlign.start,
+                    alignment:
+                        AlignmentDirectional.topStart // or Alignment.topLeft
+                    ),
+              ],
+            ),
             SizedBox(
               height: 48.0,
             ),
