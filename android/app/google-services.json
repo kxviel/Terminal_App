@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "937575917635",
+    "firebase_url": "https://terminal-cc918.firebaseio.com",
+    "project_id": "terminal-cc918",
+    "storage_bucket": "terminal-cc918.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937575917635:android:388824937ec2d4493a4cf6",
+        "android_client_info": {
+          "package_name": "com.example.linux_api"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937575917635-65ajp5535t9ejvlc3ufl6bdiu0r8bt76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA41qhF5yua2gb1wknVBZwEoUoFl4fKWMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937575917635-65ajp5535t9ejvlc3ufl6bdiu0r8bt76.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

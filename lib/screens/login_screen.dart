@@ -1,5 +1,4 @@
 import 'package:linux_api/screens/terminal.dart';
-
 import '../components/roundedButtons.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffe8ffff),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -67,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               RoundedButton(
                   title: 'Log In',
-                  color: Colors.lightBlueAccent,
+                  color: Color(0xff41aea9),
                   onPressed: () async {
                     setState(() {
                       showSpinner = true;
