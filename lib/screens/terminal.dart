@@ -90,12 +90,12 @@ class MessageStream extends StatelessWidget {
               ),
             );
           }
-
-          final fireReply = snapshot.data.documents.reversed;
+          QuerySnapshot querySnapshot = snapshot.data;
+          final fireReply = querySnapshot.docs.reversed;
           List<MessageBubble> messageBubbles = [];
 
           for (var message in fireReply) {
-            final messageText = message.data['httpdResult'];
+            final messageText = message.data()['httpdResult'];
             //final messageSender = message.data['sender'];
             //final currentUser = loggedInUser.email;
             final messageBubble = MessageBubble(
