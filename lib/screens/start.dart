@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:linux_api/screens/login_screen.dart';
+import 'package:linux_api/screens/register_screen.dart';
+import 'package:linux_api/screens/signIn.dart';
 import 'package:linux_api/screens/terminal.dart';
 import '../components/roundedButtons.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,10 +70,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 48.0,
             ),
             RoundedButton(
-              title: 'Log In',
+              title: 'Sign In',
               color: Color(0xff41aea9),
               onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
+                Navigator.pushNamed(context, SignInScreen.id);
+              },
+            ),
+            RoundedButton(
+              title: 'Sign Up',
+              color: Color(0xff41aea9),
+              onPressed: () {
+                Navigator.pushNamed(context, RegisterSreen.id);
               },
             ),
           ],
