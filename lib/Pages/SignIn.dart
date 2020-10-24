@@ -1,28 +1,26 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:linux_api/http.dart';
-import 'package:linux_api/screens/terminal.dart';
-import '../components/roundedButtons.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:linux_api/Pages/LinuxLogin.dart';
+import 'package:linux_api/components/roundedButtons.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../constants.dart';
 
-class LoginScreen extends StatefulWidget {
-  static String id = 'login';
+final _auth = FirebaseAuth.instance;
+
+class SignInScreen extends StatefulWidget {
+  static String id = 'SignIn';
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  String user;
-  final _auth = FirebaseAuth.instance;
+class _SignInScreenState extends State<SignInScreen> {
   String email;
   String password;
-  String command;
   bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe8ffff),
+      backgroundColor: Colors.white,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -36,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('images/linux.png'),
                   ),
                 ),
               ),
@@ -47,9 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  user = value;
+                  email = value;
                 },
-                decoration: kTextFieldDec.copyWith(hintText: 'Enter Username'),
+                decoration:
+                    kTextFieldDec.copyWith(hintText: 'Enter Your Email'),
               ),
               SizedBox(
                 height: 8.0,
@@ -67,20 +66,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24.0,
               ),
               RoundedButton(
-                  title: 'Log In',
-                  color: Color(0xff41aea9),
+                  title: 'Sign In',
+                  color: Colors.teal[300],
                   onPressed: () async {
                     setState(() {
                       showSpinner = true;
                     });
                     try {
-                      if (user == 'root') {
-                        Navigator.pushNamed(context, Terminal.id);
-                      } else {
-                        command = 'su - $user';
-                        HTTP(
-                            'http://192.168.43.161/cgi-bin/myCGI.py?x=$command');
-                        Navigator.pushNamed(context, Terminal.id);
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      print(user);
+                      print(password);
+                      if (user != null) {
+                        Navigator.pushNamed(context, LinuxLoginScreen.id);
                       }
                       setState(() {
                         showSpinner = false;

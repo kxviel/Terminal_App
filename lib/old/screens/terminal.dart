@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linux_api/constants.dart';
-import 'package:linux_api/http.dart';
 
 final _fire = FirebaseFirestore.instance;
+final _auth = FirebaseAuth.instance;
+User loggedInUser;
 
 class Terminal extends StatefulWidget {
   static String id = 'chat';
@@ -15,6 +17,23 @@ class Terminal extends StatefulWidget {
 class _TerminalState extends State<Terminal> {
   final controller = TextEditingController();
   String commandText;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +80,10 @@ class _TerminalState extends State<Terminal> {
                       // var returnedBody = HTTP(
                       //     'http://192.168.43.161/cgi-bin/myCGI.py?x=sudo $commandText');
 
-                      _fire
-                          .collection('commands')
-                          .add({'httpdResult': commandText /*returnedBody*/});
+                      _fire.collection('commands').add({
+                        'httpdResult': commandText /*returnedBody*/,
+                        'sender': loggedInUser.email,
+                      });
                     },
                     child: Icon(Icons.send),
                   ),
@@ -96,11 +116,16 @@ class MessageStream extends StatelessWidget {
 
           for (var message in fireReply) {
             final messageText = message.data()['httpdResult'];
-            //final messageSender = message.data['sender'];
-            //final currentUser = loggedInUser.email;
+            final messageSender = message.data()['sender'];
+
+            final currentUser = loggedInUser.email;
+
             final messageBubble = MessageBubble(
               text: messageText,
+              isMe: currentUser == messageSender,
+              sender: messageSender,
             );
+
             messageBubbles.add(messageBubble);
           }
           return Expanded(
@@ -116,8 +141,9 @@ class MessageStream extends StatelessWidget {
 class MessageBubble extends StatelessWidget {
   final String text;
   final bool isMe;
+  final String sender;
 
-  MessageBubble({this.text, this.isMe});
+  MessageBubble({this.text, this.isMe, this.sender});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -127,7 +153,7 @@ class MessageBubble extends StatelessWidget {
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.stretch,
         children: [
           Text(
-            'sender',
+            sender,
             style: TextStyle(fontSize: 12.0, color: Colors.black54),
           ),
           Material(

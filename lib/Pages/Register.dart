@@ -1,19 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:linux_api/Pages/LinuxLogin.dart';
 import 'package:linux_api/components/roundedButtons.dart';
-import 'package:linux_api/screens/login_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../constants.dart';
 
+final _auth = FirebaseAuth.instance;
+
 class RegisterSreen extends StatefulWidget {
-  static String id = 'register';
+  static String id = 'Register';
   @override
   _RegisterSreenState createState() => _RegisterSreenState();
 }
 
 class _RegisterSreenState extends State<RegisterSreen> {
   bool showSpinner = false;
-  final _auth = FirebaseAuth.instance;
+
   String email;
   String password;
   @override
@@ -33,7 +35,7 @@ class _RegisterSreenState extends State<RegisterSreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('images/linux.png'),
                   ),
                 ),
               ),
@@ -66,7 +68,7 @@ class _RegisterSreenState extends State<RegisterSreen> {
               ),
               RoundedButton(
                 title: 'Register',
-                color: Colors.blueAccent,
+                color: Colors.teal[300],
                 onPressed: () async {
                   setState(() {
                     showSpinner = true;
@@ -75,7 +77,7 @@ class _RegisterSreenState extends State<RegisterSreen> {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
                     if (newUser != null) {
-                      Navigator.pushNamed(context, LoginScreen.id);
+                      Navigator.pushNamed(context, LinuxLoginScreen.id);
                     }
                     setState(() {
                       showSpinner = false;

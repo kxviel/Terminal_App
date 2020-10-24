@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:linux_api/screens/login_screen.dart';
-import 'package:linux_api/screens/register_screen.dart';
-import 'package:linux_api/screens/signIn.dart';
-import 'package:linux_api/screens/terminal.dart';
+import 'package:linux_api/Pages/Register.dart';
+import 'package:linux_api/Pages/SignIn.dart';
 import '../components/roundedButtons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static String id = 'welcome';
+  static String id = 'Welcome';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();

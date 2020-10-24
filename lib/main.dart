@@ -1,10 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:linux_api/screens/login_screen.dart';
-import 'package:linux_api/screens/register_screen.dart';
-import 'package:linux_api/screens/signIn.dart';
-import 'package:linux_api/screens/terminal.dart';
-import 'package:linux_api/screens/start.dart';
+
+import 'Pages/LinuxLogin.dart';
+import 'Pages/Register.dart';
+import 'Pages/SignIn.dart';
+import 'Pages/TerminalChat.dart';
+import 'Pages/Welcome.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        Terminal.id: (context) => Terminal(),
+        LinuxLoginScreen.id: (context) => LinuxLoginScreen(),
+        TerminalChat.id: (context) => TerminalChat(),
         RegisterSreen.id: (context) => RegisterSreen(),
         SignInScreen.id: (context) => SignInScreen(),
       },

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:linux_api/Pages/TerminalChat.dart';
 import 'package:linux_api/components/roundedButtons.dart';
-import 'package:linux_api/screens/login_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../constants.dart';
+import '../http.dart';
 
-class SignInScreen extends StatefulWidget {
-  static String id = 'login';
+class LinuxLoginScreen extends StatefulWidget {
+  static String id = 'Linux';
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _LinuxLoginScreenState createState() => _LinuxLoginScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  final _auth = FirebaseAuth.instance;
-  String email;
-  String password;
+class _LinuxLoginScreenState extends State<LinuxLoginScreen> {
+  String username;
+  String ipAddress;
+  String command;
   bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
@@ -41,41 +41,42 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: 48.0,
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  email = value;
+                  ipAddress = value;
                 },
                 decoration:
-                    kTextFieldDec.copyWith(hintText: 'Enter Your Email'),
+                    kTextFieldDec.copyWith(hintText: 'Enter Your IP Address'),
               ),
               SizedBox(
                 height: 8.0,
               ),
               TextField(
-                obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  password = value;
+                  username = value;
                 },
                 decoration:
-                    kTextFieldDec.copyWith(hintText: 'Enter Your Password'),
+                    kTextFieldDec.copyWith(hintText: 'Enter Your Username'),
               ),
               SizedBox(
                 height: 24.0,
               ),
               RoundedButton(
-                  title: 'Log In',
-                  color: Colors.lightBlueAccent,
+                  title: 'Log In to Terminal',
+                  color: Color(0xff41aea9),
                   onPressed: () async {
                     setState(() {
                       showSpinner = true;
                     });
                     try {
-                      final user = await _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-                      if (user != null) {
-                        Navigator.pushNamed(context, LoginScreen.id);
+                      if (username == 'root') {
+                        Navigator.pushNamed(context, TerminalChat.id);
+                      } else {
+                        command = 'su - $username';
+                        HTTP(
+                            'http://192.168.43.161/cgi-bin/myCGI.py?x=$command');
+                        Navigator.pushNamed(context, TerminalChat.id);
                       }
                       setState(() {
                         showSpinner = false;
