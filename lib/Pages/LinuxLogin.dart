@@ -51,14 +51,6 @@ class _LinuxLoginScreenState extends State<LinuxLoginScreen> {
               SizedBox(
                 height: 8.0,
               ),
-              TextField(
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  username = value;
-                },
-                decoration:
-                    kTextFieldDec.copyWith(hintText: 'Enter Your Username'),
-              ),
               SizedBox(
                 height: 24.0,
               ),
@@ -70,14 +62,14 @@ class _LinuxLoginScreenState extends State<LinuxLoginScreen> {
                       showSpinner = true;
                     });
                     try {
-                      if (username == 'root') {
-                        Navigator.pushNamed(context, TerminalChat.id);
-                      } else {
-                        command = 'su - $username';
-                        HTTP(
-                            'http://192.168.43.161/cgi-bin/myCGI.py?x=$command');
-                        Navigator.pushNamed(context, TerminalChat.id);
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TerminalChat(
+                                  ipAddress: ipAddress,
+                                )),
+                      );
+
                       setState(() {
                         showSpinner = false;
                       });

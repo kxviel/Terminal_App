@@ -1,11 +1,12 @@
 import 'package:http/http.dart' as http;
 
 class HTTP {
-  final String url;
-  HTTP(this.url);
+  final String iP;
+  final String cMD;
+  var response;
+  HTTP({this.iP, this.cMD});
 
-  Future getData() async {
-    http.Response response = await http.get(url);
-    return response.body;
+  server() async {
+    return response;
   }
 }
