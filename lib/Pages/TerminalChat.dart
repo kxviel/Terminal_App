@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linux_api/Pages/Welcome.dart';
 import '../constants.dart';
-import 'package:http/http.dart' as http;
 import 'package:ssh/ssh.dart';
 
 final _fire = FirebaseFirestore.instance;
@@ -13,9 +12,10 @@ final _auth = FirebaseAuth.instance;
 User loggedInUser;
 
 class TerminalChat extends StatefulWidget {
-  final ipAddress;
+  final String ipAddress;
+  final dynamic linPass;
   static String id = 'Terminal';
-  TerminalChat({this.ipAddress});
+  TerminalChat({this.ipAddress, this.linPass});
 
   @override
   _TerminalChatState createState() => _TerminalChatState();
@@ -25,13 +25,6 @@ class _TerminalChatState extends State<TerminalChat> {
   final controller = TextEditingController();
   var sshResult;
   String commandText;
-
-  // func(ip, command) async {
-  //   print(widget.ipAddress);
-  //   var url = 'http://$ip/cgi-bin/myCGI.py?x=$command'; //192.168.43.161 centos
-  //   response = await http.get(url);
-  //   return variable.body;
-  // }
 
   @override
   void initState() {
@@ -94,12 +87,9 @@ class _TerminalChatState extends State<TerminalChat> {
                   FlatButton(
                     onPressed: () async {
                       controller.clear();
-                      // var url =
-                      //     'http://${widget.ipAddress}/cgi-bin/myCGI.py?x=$commandText';
-                      // var response = await http.get(url);
 
                       var client = SSHClient(
-                        host: '192.168.43.50',
+                        host: widget.ipAddress,
                         port: 22,
                         username: 'root',
                         passwordOrKey: 9481,

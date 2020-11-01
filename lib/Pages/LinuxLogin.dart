@@ -3,7 +3,6 @@ import 'package:linux_api/Pages/TerminalChat.dart';
 import 'package:linux_api/components/roundedButtons.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../constants.dart';
-import '../http.dart';
 
 class LinuxLoginScreen extends StatefulWidget {
   static String id = 'Linux';
@@ -14,6 +13,7 @@ class LinuxLoginScreen extends StatefulWidget {
 class _LinuxLoginScreenState extends State<LinuxLoginScreen> {
   String username;
   String ipAddress;
+  dynamic linPass;
   String command;
   bool showSpinner = false;
   @override
@@ -51,6 +51,14 @@ class _LinuxLoginScreenState extends State<LinuxLoginScreen> {
               SizedBox(
                 height: 8.0,
               ),
+              TextField(
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  linPass = value;
+                },
+                decoration:
+                    kTextFieldDec.copyWith(hintText: 'Enter Your Password'),
+              ),
               SizedBox(
                 height: 24.0,
               ),
@@ -67,6 +75,7 @@ class _LinuxLoginScreenState extends State<LinuxLoginScreen> {
                         MaterialPageRoute(
                             builder: (context) => TerminalChat(
                                   ipAddress: ipAddress,
+                                  linPass: linPass,
                                 )),
                       );
 
