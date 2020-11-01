@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linux_api/Pages/Welcome.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:ssh/ssh.dart';
 
 final _fire = FirebaseFirestore.instance;
 final _auth = FirebaseAuth.instance;
@@ -21,6 +23,7 @@ class TerminalChat extends StatefulWidget {
 
 class _TerminalChatState extends State<TerminalChat> {
   final controller = TextEditingController();
+  var sshResult;
   String commandText;
 
   // func(ip, command) async {
@@ -91,11 +94,28 @@ class _TerminalChatState extends State<TerminalChat> {
                   FlatButton(
                     onPressed: () async {
                       controller.clear();
-                      var url =
-                          'http://${widget.ipAddress}/cgi-bin/myCGI.py?x=$commandText';
-                      var response = await http.get(url);
+                      // var url =
+                      //     'http://${widget.ipAddress}/cgi-bin/myCGI.py?x=$commandText';
+                      // var response = await http.get(url);
+
+                      var client = SSHClient(
+                        host: '192.168.43.50',
+                        port: 22,
+                        username: 'root',
+                        passwordOrKey: 9481,
+                      );
+                      try {
+                        var result = await client.connect();
+                        if (result == "session_connected")
+                          sshResult = await client.execute(commandText);
+                        client.disconnect();
+                        print(sshResult);
+                      } on PlatformException catch (e) {
+                        print('Error: ${e.code}\nError Message: ${e.message}');
+                      }
+
                       _fire.collection('commands').add({
-                        'httpdResult': response.body,
+                        'httpdResult': sshResult,
                         'sender': loggedInUser.email,
                       });
                     },
