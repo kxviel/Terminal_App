@@ -15,9 +15,7 @@ ScreenShots
     </tr>
     <tr>
       <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/2.png" alt="App SS" width="250" height="550" /></td>
-      <td><video width="250" height="550" autoplay>
-  <source src="https://github.com/kevkanae/Terminal_App/blob/master/xtra/a.mp4" type="video/mp4">
-</video></td>
+      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/a.gif" alt="App SS" width="250" height="550" /></td>
     </tr>
   </table>
   
