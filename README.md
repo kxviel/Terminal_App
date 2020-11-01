@@ -2,7 +2,7 @@
 ---
 
 **A New Flutter Project.**<br>
-***This is an app that helps users to execute linux commands and get the results displayed on ur Mobile Phone**
+***This is an app that helps users to execute linux commands and get the results displayed on ur Mobile Phone***
 
 
 ---
