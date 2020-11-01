@@ -1,16 +1,31 @@
-# linux_api
+# Linux Terminal App
+---
 
-A new Flutter application.
+**A New Flutter Project.**<br>
+**This is an app that helps users to execute linux commands and get the results displayed on ur Mobile Phone**
 
-## Getting Started
+*Click here [Download](https://github.com/madannaik/Flutter-weather-App/raw/main/Extra%20files/app-release.apk) App*
+---
+ScreenShots
+---
+  <table>
+    <tr>
+      <td><img src="https://github.com/madannaik/Flutter-weather-App/raw/main/Extra%20files/photo6107009609182063165.jpg" alt="App SS" width="250" height="550" /></td>
+      <td><img src="https://github.com/madannaik/Flutter-weather-App/raw/main/Extra%20files/photo6107009609182063168.jpg" alt="App SS" width="250" height="550" /></td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/madannaik/Flutter-weather-App/raw/main/Extra%20files/photo6107009609182063166.jpg" alt="App SS" width="250" height="550" /></td>
+      <td><img src="https://github.com/madannaik/Flutter-weather-App/raw/main/Extra%20files/photo6107009609182063167.jpg" alt="App SS" width="250" height="550" /></td>
+    </tr>
+  </table>
+  
+---
 
-This project is a starting point for a Flutter application.
+ 
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
+
+For help getting started with Flutter, view
 [online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+samples, guidance on mobile development, an
