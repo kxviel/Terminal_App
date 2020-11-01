@@ -10,12 +10,12 @@ ScreenShots
 ---
   <table>
     <tr>
-      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/1.png" alt="App SS" width="250" height="550" /></td>
-      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/2.png" alt="App SS" width="250" height="550" /></td>
+      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/1.png" alt="App SS" width="300" height="550" /></td>
+      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/2.png" alt="App SS" width="300" height="550" /></td>
     </tr>
     <tr>
-      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/2.png" alt="App SS" width="250" height="550" /></td>
-      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/a.gif" alt="App SS" width="250" height="550" /></td>
+      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/2.png" alt="App SS" width="300" height="550" /></td>
+      <td><img src="https://raw.githubusercontent.com/kevkanae/Terminal_App/master/xtra/a.gif" alt="App SS" width="300" height="550" /></td>
     </tr>
   </table>
   
